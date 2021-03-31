@@ -3,13 +3,16 @@ import inspect
 import os
 import json
 import urllib.request
+import ssl
 
 from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor, wait
 
 root = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
-PREFIX = "https://dos.zczc.cz/static/games/bin/"
+ssl._create_default_https_context = ssl._create_unverified_context
+
+PREFIX = "https://dos_bin.zczc.cz/"
 DESTINATION = os.path.join(root, 'bin')
 BUF_SIZE = 65536
 THREAD_SIZE = 10
